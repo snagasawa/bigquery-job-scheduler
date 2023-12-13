@@ -1,0 +1,52 @@
+sources: {
+  users: {
+    shape: sql_table
+    id: INT64 {constraint: NOT NULL}
+    name: STRING {constraint: NOT NULL}
+  }
+
+  favorite_shops: {
+    shape: sql_table
+    users_id: INT64 {constraint: NOT NULL}
+    shops_id: INT64 {constraint: NOT NULL}
+  }
+
+  shops: {
+    shape: sql_table
+    id: INT64 {constraint: NOT NULL}
+    name: STRING {constraint: NOT NULL}
+  }
+
+  shop_goods: {
+    shape: sql_table
+    shops_id: INT64 {constraint: NOT NULL}
+    goods_id: INT64 {constraint: NOT NULL}
+  }
+
+  goods: {
+    shape: sql_table
+    id: INT64 {constraint: NOT NULL}
+    name: STRING {constraint: NOT NULL}
+  }
+
+  stocks: {
+    shape: sql_table
+    id: INT64 {constraint: NOT NULL}
+    goods_id: INT64 {constraint: NOT NULL}
+    quantity: INT64 {constraint: NOT NULL}
+  }
+
+  discounts: {
+    shape: sql_table
+    id: INT64 {constraint: NOT NULL}
+    goods_id: INT64 {constraint: NOT NULL}
+    rate: INT64 {constraint: NOT NULL}
+  }
+
+  favorite_shops -> users
+  favorite_shops -> shops
+  shop_goods -> shops
+  shop_goods -> goods
+  stocks -> goods
+  discounts -> goods
+}
